@@ -1,0 +1,25 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"tsx watch ./index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vamsisuddamalla181/typescript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vamsisuddamalla181/typescript/issues"
+  },
+  "homepage": "https://github.com/vamsisuddamalla181/typescript#readme",
+  "dependencies": {
+    "typescript": "^5.9.2"
+  }
+}
