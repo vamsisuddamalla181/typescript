@@ -81,3 +81,76 @@ interface data4 extends data3{
 }
 const final1:data4={name:"vamsi",id:123}
 console.log(final1)
+
+
+
+
+//enums-it  is a special type of class that conatins unchangable variables
+//It allows only numbers and strings
+//default values start from 0
+enum sam{
+    one=1,
+    two,
+    three,
+    four
+}
+const g:sam=sam.two
+console.log(g)
+
+
+
+//genric froms -the code can be reusaable
+
+function gen<T>(value:T):T{
+    return value;
+}
+console.log(gen<string>("vamsi"))
+console.log(gen<number>(12345))
+
+
+//generic froms using interfaces
+
+interface pair<k,t>{
+    name:k;
+    age:t
+}
+const jj:pair<string,number>={name:"vamsi",age:1234}
+console.log(jj)
+
+
+//uitlity types
+
+interface Person {
+  name: string;
+  age: number;
+  location?: string;
+}
+const P_data:Partial<Person>={name:"vamsi"}
+console.log(P_data)
+
+
+//type assetions
+let random:any="1234"
+let numlen:number=(random as string).length;
+let alt:number=(<string>random).length;
+console.log(numlen)
+console.log(alt)
+
+
+//keyof
+
+type sammm={
+    name:String;
+    age:number;
+    phone?:any
+}
+type key=keyof sammm
+let v:key="name"
+console.log(v=="name")
+
+
+//condition maps
+type condition<t>=t extends string?true:false
+let a1:condition<string>
+console.log(a)
+
