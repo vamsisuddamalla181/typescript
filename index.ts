@@ -148,9 +148,10 @@ type key=keyof sammm
 let v:key="name"
 console.log(v=="name")
 
+//literals
+function rollDice(): 1 | 2 | 3 | 4 | 5 | 6 {
+  return Math.floor(Math.random() * 6) + 1 as 1 | 2 | 3 | 4 | 5 | 6;
+}
 
-//condition maps
-type condition<t>=t extends string?true:false
-let a1:condition<string>
-console.log(a)
-
+const result = rollDice();
+console.log(`You rolled a ${result}`);
