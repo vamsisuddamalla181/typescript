@@ -1,7 +1,7 @@
 
 // type Grade= Number|"A" | "B" | "C" | "D" | "F";
 
-import { Console } from "console";
+
 
 // type BasicInfo = {
 //   id: number;
@@ -257,12 +257,14 @@ import { Console } from "console";
 // console.log(sucess({ id: 1, name: "Vamsi" }));  
 // console.log(sucess([1, 2, 3])); 
 
-function logclass(target: any):void {
-  console.log(`YOU GET IT FRM DECO${this.name}`)
-}
-@logclass
-class user{
+// function logclass(target: any):void {
+//   console.log(`YOU GET IT FRM DECO${this.name}`)
+// }
+// @logclass
+// class user{
 
-  constructor(public name: string) {}
-}
-const uu=new user("vamsi")
+//   constructor(public name: string) {}
+// }
+// const uu=new user("vamsi")
+
+

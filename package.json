@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsx watch ./index.ts",
-    "dev":"nodemon app.js "
+    "build": "tsc",
+    "start": "nodemon ./dist/tsprax.js",
+    "dev": "tsx watch ./src/tsprax.ts"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "express": "^5.1.0",
     "helmet": "^8.1.0",
     "nodemon": "^3.1.10",
+    "tsx": "^4.20.5",
     "typescript": "^5.9.2"
   }
 }
