@@ -146,3 +146,149 @@ class Rectangle implements Shape {
 const shapes: Shape[] = [new Circle(5), new Rectangle(4, 6)];
 
 shapes.forEach(s => console.log(s.area()));
+
+//--------------------------------------------------------------------------------------------
+//typeof
+function formatValue(value: string | number) {
+    if (typeof value === "string") {
+        console.log("String value:", value.toUpperCase());
+    } else {
+        console.log("Number value:", value.toFixed(2));
+    }
+}
+
+formatValue("hello"); 
+formatValue(12.345);  
+//instanceof
+class a1{
+    aa(){
+        console.log("this is aa")
+    }
+}
+class bb{
+    bb(){
+        console.log("this is bb")
+    }
+}
+function cc(dd:a1|bb){
+    if(dd instanceof a1){
+        dd.aa()
+    }
+    else{
+        dd.bb
+    }
+}
+cc(new a1())
+cc(new bb())
+
+//custom gaurd
+interface Fish { swim: () => void; }
+interface Bird { fly: () => void; }
+
+function isFish(pet: Fish | Bird): pet is Fish {
+    return (pet as Fish).swim !== undefined;
+}
+
+function move(pet: Fish | Bird) {
+    if (isFish(pet)) {
+        pet.swim();
+    } else {
+        pet.fly();
+    }
+}
+
+//as-deines a specific value
+let someValue: unknown = "vamsi";
+let strLength: number = (someValue as string).length;
+console.log(strLength)
+
+//literals-allow only exact vlaues for the variables
+let direction: "up" | "down" | "left" | "right";
+direction = "up"; 
+
+//A discriminated union is a union of types with a common property
+interface Circle {
+    kind: "circle";
+    radius: number;
+}
+interface Square {
+    kind: "square";
+    side: number;
+}
+
+type Shapes = Circle | Square;
+
+function area(shape: Shapes) {
+    switch (shape.kind) {
+        case "circle":
+            console.log( Math.PI * shape.radius ** 2);
+            break;
+        case "square":
+            console.log(shape.side ** 2);
+            break;
+    }
+}
+
+area({ kind: "square", side: 5 });
+// area({ kind:"circle" ,  radius:10});
+
+//index keys-Index signatures allow objects to have dynamic keys of a specific type.
+interface StringNumberMap {
+    [key: string]: number;
+}
+
+const scores: StringNumberMap = {
+    Alice: 10,
+    Bob: 15
+};
+
+scores["Charlie"] = 20; 
+scores["vamsi"]=300
+console.log(scores)
+
+//utility types
+//partial-make the all fields optional
+interface User {
+    id: number;
+    name: string;
+    email: string;
+}
+
+const updateUser: Partial<User> = { name: "Vamsi" };
+console.log(updateUser)
+//pick-slect only specific properties
+type UserPreview = Pick<User, "id" | "name">;
+const user: UserPreview = { id: 1, name: "Vamsi" };
+console.log(user)
+//omit-excludes
+type omit={
+    id:number;
+    name:string
+}
+const omitt:Omit<omit,"id">={name:"string"}
+console.log(omitt)
+//record-provide keys and values Record<Keys, Type>
+type Role = "admin" | "user" | "guest";
+
+const userRoles: Record<Role, string> = {
+  admin: "Alice",
+  user: "Bob",
+  guest: "Charlie",
+};
+
+console.log(userRoles.admin); 
+//readonly-makes the properties immutable
+const config: Readonly<User> = {
+    id: 1,
+    name: "Vamsi",
+    email: "vamsi@example.com"
+};
+console.log(config)
+//mapped types-Mapped types create new types by transforming existing types.
+type ReadonlyUser = {
+    readonly [K in keyof User]: User[K];
+};
+
+type OptionalUser = {
+    [K in keyof User]?: User[K];
+};
