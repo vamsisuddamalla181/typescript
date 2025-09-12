@@ -292,3 +292,70 @@ type ReadonlyUser = {
 type OptionalUser = {
     [K in keyof User]?: User[K];
 };
+
+
+
+//---------------------------------------------------------------------------
+//genreics-it allows youn to write the code with any type
+
+function identity<T>(value: T): T {
+    return value;
+}
+
+// TypeScript can infer the type automatically:
+const num = identity(42);       // num is number
+const str = identity("Vamsi");  // str is string
+
+class Box<T> {
+    content: T;
+
+    constructor(value: T) {
+        this.content = value;
+    }
+
+    getContent(): T {
+        return this.content;
+    }
+}
+
+const numberBox = new Box<number>(123);
+const stringBox = new Box<string>("Hello");
+
+console.log(numberBox.getContent()); // 123
+console.log(stringBox.getContent()); // Hello
+
+//generic constraints-extends
+//Sometimes we want generics to only allow certain types. This is called a constraint.
+
+interface Lengthwise {
+    length: number;
+}
+
+function logLength<T extends Lengthwise>(item: T): void {
+    console.log(item.length);
+}
+
+logLength([1, 2, 3]);      //  Array has length
+logLength("Hello");        //  String has length
+// logLength(42);           Error, number has no length
+
+
+//Default Generic Types
+function createArray<T = string>(length: number, value: T): T[] {
+    return Array(length).fill(value);
+}
+
+const arr1 = createArray(3, "Hi");   
+const arr2 = createArray<number>(3, 0);
+
+
+//keyof-makes all fileds union
+function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
+    return obj[key];
+}
+
+const person = { name: "Vamsi", age: 25 };
+
+const name1 = getProperty(person, "name"); // "Vamsi"
+const age = getProperty(person, "age");   //  25
+
