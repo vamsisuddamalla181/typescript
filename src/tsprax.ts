@@ -48,6 +48,9 @@ const double=samplee([1,2,3,4,5],(n)=>n**2)
 
 
 //-------------------------------------------------------------------------
+//class-blue print of an object
+//object-instance of class
+//access -modifiers
 class aa{
     public a;
     protected b;
@@ -101,21 +104,45 @@ obj3.marks=-300;
 console.log(obj3.grade)
 
 
-class Student {
-  private _age: number = 0;
+//inhertiance-a class getting the properties from the parenr class
+//abstract-which means blueprint for the other classes -in abstract class we declare methods name only
+//we can not  instantiate the abstract class and we can be impleted the method using subclass only
+//it defines what but not how
+abstract class sam{
+    abstract model():void;
+}
+class car extends sam{
+    model(){
+        console.log("this is tata curv ev")
+    }
+}
+const obj4=new car()
+obj4.model()
 
-  get age(): number {
-    return this._age;
-  }
+//polymorphism- asingle interfce can work with multipe objcts or methods
+//many forms - Compile-time (overloading), Runtime (overriding)
+//method overriding-sub class is overrides the parent class and we get the constructor by super()n keyword
+//super()-to achive the porperty,method from parent class
 
-  set age(value: number) {
-    if (value < 0) throw new Error("Age cannot be negative");
-    this._age = value;
+
+interface Shape {
+  area(): number;
+}
+
+class Circle implements Shape {
+  constructor(public radius: number) {}
+  area() {
+    return Math.PI * this.radius ** 2;
   }
 }
 
-const s = new Student();
-s.age = -20;         // uses setter
-console.log(s.age); // uses getter → 20
-// s.age = -5; ❌ Error
+class Rectangle implements Shape {
+  constructor(public width: number, public height: number) {}
+  area() {
+    return this.width * this.height;
+  }
+}
 
+const shapes: Shape[] = [new Circle(5), new Rectangle(4, 6)];
+
+shapes.forEach(s => console.log(s.area()));
